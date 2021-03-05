@@ -6,6 +6,10 @@ class Bond
 public:
     Bond();
 
+    Bond(double, double, double, char);
+
+    double getBondPrice();
+
     void setPrincipal(double);
     void setRate(double);
     void setYearsToMaturity(double);
