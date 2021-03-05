@@ -14,11 +14,12 @@ Bond::Bond(double prin, double coup, double market, double yTM, char typ)
     setMarketRate(market);
     setYearsToMaturity(yTM);
     setPaymentType(typ);
+    printBondDetails();
+
 }  
 
 Bond::~Bond()
 {
-    std::cout << "Bond, smoking a final cigarette" << std::endl;
 }
 
 void Bond::printBondPrice()
