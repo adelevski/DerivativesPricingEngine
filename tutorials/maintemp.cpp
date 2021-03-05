@@ -4,20 +4,51 @@
 #include "functions.h"
 #include "globals.h"
 
-int main()
+enum AmortizeProgram
+{
+    LOAN_PRINCIPAL = 1,
+    INTEREST_RATE = 2,
+    YEARS_OF_LOAN = 3
+};
+
+int main(int argc, char* argv[])
 {
     double principal = 0.0;
     double humanInterest = 0.0;
     int yearsOfLoan = 0;
+    
+    if (argc == 1)
+    {
+        std::cout << "Enter the principal amount: ";
+        std::cin >> principal;
+        
+        std::cout << "Enter the interest rate: ";
+        std::cin >> humanInterest;
+        
+        std::cout << "Enter the years of loan: ";
+        std::cin >> yearsOfLoan;
+    }
+    else
+    {
+        principal = atof(argv[LOAN_PRINCIPAL]);
+        humanInterest = atof(argv[INTEREST_RATE]);
+        yearsOfLoan = atoi(argv[YEARS_OF_LOAN]);
 
-    std::cout << "Enter the principal amount: ";
-    std::cin >> principal;
-    
-    std::cout << "Enter the interest rate: ";
-    std::cin >> humanInterest;
-    
-    std::cout << "Enter the years of loan: ";
-    std::cin >> yearsOfLoan;
+    }
+
+    std::cout << "Loan Principal: $" << principal << std::endl;
+    std::cout << "Interest Rate: " << humanInterest << "%" << std::endl;
+
+    if (yearsOfLoan == 1)
+    {
+         std::cout << "Time Period: " << yearsOfLoan << " year" << std::endl;
+    }
+    else
+    {
+         std::cout << "Time Period: " << yearsOfLoan << " years" << std::endl;
+    }
+
+   
 
     double interest = divisor(humanInterest, gPercentDenominator);
     double monthInterest = divisor(interest, gMonthsInYear);
