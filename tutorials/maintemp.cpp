@@ -22,6 +22,29 @@ enum AmortEnum
     BALANCE_OUT = 16,
 };
 
+std::string AmortHeader[] =
+{
+    "Yr",
+    "Mn",
+    "CumMn",
+    "Payment",
+    "Interest",
+    "Principal",
+    "Balance",
+};
+
+void printAmortHeader()
+{
+    std::cout << std::endl << 
+    std::setw(YR_OUT) << AmortHeader[0] << " " <<
+    std::setw(MN_OUT) << AmortHeader[1] << " " <<
+    std::setw(CUM_MN_OUT) << AmortHeader[2] << " " <<
+    std::setw(PAYMENT_OUT) << AmortHeader[3] << " " <<
+    std::setw(INTEREST_OUT) << AmortHeader[4] << " " <<
+    std::setw(PRINCIPAL_OUT) << AmortHeader[5] << " " <<
+    std::setw(BALANCE_OUT) << AmortHeader[6] << std::endl << std::endl;
+}
+
 int main(int argc, char* argv[])
 {
     double principal = 0.0;
@@ -83,16 +106,29 @@ int main(int argc, char* argv[])
 
     long currLoanMonth = 1;
 
+    int year = 1;
+    int switchYear = 0;
+
+    int yearMonth = 1;
+
     while(currLoanMonth <= monthsOfLoan)
     {
+
+        if(switchYear != year){
+            
+            switchYear = year;
+
+            printAmortHeader();
+            
+        }
         gAmortizeMonth amorthMonth;
 
         currInterestPayment = currBalance * monthInterest;
         currPrincipalPayment = payment - currInterestPayment;
-        currBalance = currBalance - currPrincipalPayment;
+        currBalance = abs(currBalance - currPrincipalPayment);
 
-        amorthMonth.year = 1;
-        amorthMonth.yearMonth = 1;
+        amorthMonth.year = year;
+        amorthMonth.yearMonth = yearMonth;
         amorthMonth.loanMonth = currLoanMonth;
         amorthMonth.payment = payment;
         amorthMonth.pureInterest = currInterestPayment;
@@ -100,14 +136,21 @@ int main(int argc, char* argv[])
         amorthMonth.principalBalance = currBalance;
 
         std::cout << 
-            std::setw(YR_OUT) << amorthMonth.year << " " <<
-            std::setw(MN_OUT) << amorthMonth.yearMonth << " " <<
-            std::setw(CUM_MN_OUT) << amorthMonth.loanMonth << " " <<
-            std::setw(PAYMENT_OUT) << amorthMonth.payment << " " <<
-            std::setw(INTEREST_OUT) << amorthMonth.pureInterest << " " <<
-            std::setw(PRINCIPAL_OUT) << amorthMonth.paidDownPrincipal << " " <<
-            std::setw(BALANCE_OUT) << amorthMonth.principalBalance <<
-            std::endl;
+        std::setw(YR_OUT) << amorthMonth.year << " " <<
+        std::setw(MN_OUT) << amorthMonth.yearMonth << " " <<
+        std::setw(CUM_MN_OUT) << amorthMonth.loanMonth << " " <<
+        std::setw(PAYMENT_OUT) << amorthMonth.payment << " " <<
+        std::setw(INTEREST_OUT) << amorthMonth.pureInterest << " " <<
+        std::setw(PRINCIPAL_OUT) << amorthMonth.paidDownPrincipal << " " <<
+        std::setw(BALANCE_OUT) << amorthMonth.principalBalance << std::endl;
+
+        yearMonth++;
+        
+        if (yearMonth > gMonthsInYear)
+        {
+            yearMonth = 1;
+            year++;
+        }
 
         currLoanMonth++;
     }
