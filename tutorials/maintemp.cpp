@@ -43,14 +43,24 @@ int main()
 
     while(currLoanMonth <= monthsOfLoan)
     {
+        gAmortizeMonth amorthMonth;
+
         currInterestPayment = currBalance * monthInterest;
         currPrincipalPayment = payment - currInterestPayment;
         currBalance = currBalance - currPrincipalPayment;
 
-        std::cout << "CM: " << currLoanMonth;
-        std::cout << " CI: " << currInterestPayment;
-        std::cout << " CP: " << currPrincipalPayment;
-        std::cout << " Bal: " << currBalance << std::endl;
+        amorthMonth.year = 1;
+        amorthMonth.yearMonth = 1;
+        amorthMonth.loanMonth = currLoanMonth;
+        amorthMonth.payment = payment;
+        amorthMonth.pureInterest = currInterestPayment;
+        amorthMonth.paidDownPrincipal = currPrincipalPayment;
+        amorthMonth.principalBalance = currBalance;
+
+        std::cout << "CM: " << amorthMonth.loanMonth;
+        std::cout << " CI: " << amorthMonth.pureInterest;
+        std::cout << " CP: " << amorthMonth.paidDownPrincipal;
+        std::cout << " Bal: " << amorthMonth.principalBalance << std::endl;
 
         currLoanMonth++;
     }
