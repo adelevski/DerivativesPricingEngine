@@ -3,11 +3,10 @@
 
 int main(int argc, const char * argv[])
 {
-    Bond tailoredBond(1000, 0.1, 0.1, 10, 'S');
-    
-    tailoredBond.printBondDetails();
+    Bond tailoredBond(7000, 0.07, 0.15, 12, 'S');
 
-    std::cout << "Tailored Bond Price: " << tailoredBond.getBondPrice() << std::endl;
+    tailoredBond.printBondDetails();
+    tailoredBond.printBondPrice();
 
     return 0;
 }

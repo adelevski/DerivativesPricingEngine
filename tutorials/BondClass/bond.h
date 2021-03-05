@@ -9,9 +9,13 @@ public:
     const char BOND_SEMIANNUAL_TYPE = 'S';
     const char BOND_QUARTERLY_TYPE = 'Q';
 
+    const int ANNUAL_FACTOR = 1;
+    const int SEMIANNUAL_FACTOR = 2;
+    const int QUARTERLY_FACTOR = 4;
+
     Bond(double, double, double, double, char);
 
-    double getBondPrice();
+    void printBondPrice();
     void printBondDetails();
 
     void setPrincipal(double);
