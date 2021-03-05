@@ -13,6 +13,8 @@ public:
     const int SEMIANNUAL_FACTOR = 2;
     const int QUARTERLY_FACTOR = 4;
 
+    const int BOND_INVALID_BOND_TYPE = 99;
+
     Bond(double, double, double, double, char);
 
     void printBondPrice();

@@ -4,6 +4,11 @@
 
 Bond::Bond(double prin, double coup, double market, double yTM, char typ)
 {
+    if ((typ != BOND_ANNUAL_TYPE) && (typ != BOND_SEMIANNUAL_TYPE) && (typ != BOND_QUARTERLY_TYPE))
+    {
+        throw BOND_INVALID_BOND_TYPE;
+    }
+
     setPrincipal(prin);
     setCouponRate(coup);
     setMarketRate(market);
