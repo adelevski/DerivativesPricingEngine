@@ -19,7 +19,7 @@ public:
 
     ~Bond();
 
-    void printBondPrice();
+    double getBondPrice();
     void printBondDetails();
 
     void setPrincipal(double);

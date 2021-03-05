@@ -22,7 +22,7 @@ Bond::~Bond()
 {
 }
 
-void Bond::printBondPrice()
+double Bond::getBondPrice()
 {
     int scalingFactor;
 
@@ -46,12 +46,14 @@ void Bond::printBondPrice()
     double pvRedemption = getPrincipal() * pow((1 + yield), -periods);
     double bondPrice = pvCoupons + pvRedemption;
    
-    std::cout << "Coupon: " << coupon << std::endl;
-    std::cout << "Periods: " << periods << std::endl;
-    std::cout << "Yield: " << yield << std::endl;
-    std::cout << "PV of Coupons: " << pvCoupons << std::endl;
-    std::cout << "PV of Redemption: " << pvRedemption << std::endl;
-    std::cout << "Internal Bond Price: " << bondPrice << std::endl;
+    // std::cout << "Coupon: " << coupon << std::endl;
+    // std::cout << "Periods: " << periods << std::endl;
+    // std::cout << "Yield: " << yield << std::endl;
+    // std::cout << "PV of Coupons: " << pvCoupons << std::endl;
+    // std::cout << "PV of Redemption: " << pvRedemption << std::endl;
+    // std::cout << "Internal Bond Price: " << bondPrice << std::endl;
+
+    return bondPrice;
 }
 
 void Bond::printBondDetails()

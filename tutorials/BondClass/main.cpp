@@ -6,11 +6,12 @@ int main(int argc, const char * argv[])
 {
     try
     {
-        Bond tailoredBond(7000, 0.07, 0.15, 12, 'S');
-        tailoredBond.printBondPrice();
-
-        DurationBond db(7000, 0.07, 0.15, 36, 'A');
-        db.printBondPrice();
+        DurationBond db(1000, 0.07, 0.08, 10, 'S');
+        double bondPrice = db.getBondPrice();
+        std::cout << "dbPrice: " << bondPrice << std::endl;
+        
+        double dbDuration = db.getDuration();
+        std::cout << "dbDuration: " << dbDuration << std::endl;
     }
     catch(int error)
     {
