@@ -11,6 +11,17 @@ enum AmortizeProgram
     YEARS_OF_LOAN = 3
 };
 
+enum AmortEnum
+{
+    YR_OUT = 2,
+    MN_OUT = 2,
+    CUM_MN_OUT = 5,
+    PAYMENT_OUT = 12,
+    INTEREST_OUT = 12,
+    PRINCIPAL_OUT = 12,
+    BALANCE_OUT = 16,
+};
+
 int main(int argc, char* argv[])
 {
     double principal = 0.0;
@@ -88,10 +99,15 @@ int main(int argc, char* argv[])
         amorthMonth.paidDownPrincipal = currPrincipalPayment;
         amorthMonth.principalBalance = currBalance;
 
-        std::cout << "CM: " << amorthMonth.loanMonth;
-        std::cout << " CI: " << amorthMonth.pureInterest;
-        std::cout << " CP: " << amorthMonth.paidDownPrincipal;
-        std::cout << " Bal: " << amorthMonth.principalBalance << std::endl;
+        std::cout << 
+            std::setw(YR_OUT) << amorthMonth.year << " " <<
+            std::setw(MN_OUT) << amorthMonth.yearMonth << " " <<
+            std::setw(CUM_MN_OUT) << amorthMonth.loanMonth << " " <<
+            std::setw(PAYMENT_OUT) << amorthMonth.payment << " " <<
+            std::setw(INTEREST_OUT) << amorthMonth.pureInterest << " " <<
+            std::setw(PRINCIPAL_OUT) << amorthMonth.paidDownPrincipal << " " <<
+            std::setw(BALANCE_OUT) << amorthMonth.principalBalance <<
+            std::endl;
 
         currLoanMonth++;
     }

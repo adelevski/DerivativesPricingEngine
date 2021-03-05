@@ -2,4 +2,4 @@
 .vscode
 
 # Executables
-tutorials/a.exe
+*.exe
