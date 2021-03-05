@@ -17,6 +17,8 @@ public:
 
     Bond(double, double, double, double, char);
 
+    ~Bond();
+
     void printBondPrice();
     void printBondDetails();
 

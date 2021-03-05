@@ -16,6 +16,11 @@ Bond::Bond(double prin, double coup, double market, double yTM, char typ)
     setPaymentType(typ);
 }  
 
+Bond::~Bond()
+{
+    std::cout << "Bond, smoking a final cigarette" << std::endl;
+}
+
 void Bond::printBondPrice()
 {
     int scalingFactor;
