@@ -1,17 +1,17 @@
-// #ifndef BSM_H
-// #define BSM_H
+#ifndef BSM_H
+#define BSM_H
 
-// #include <iostream>
+#include <iostream>
 
-// class BSM
-// {
-//     public:
-//         BSM(float, float, float, float, float, long, long);
+class BSM
+{
+    public:
+        BSM(float, float, float, float, float, long, long);
 
-//         ~BSM()
-//         {
-//             std::cout << "Destroyed";
-//         }
-// };
+        ~BSM()
+        {
+            std::cout << "Destroyed";
+        }
+};
 
-// #endif
+#endif
