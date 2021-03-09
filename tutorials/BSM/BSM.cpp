@@ -36,24 +36,32 @@ Asset price 100, Call option, strike price 110
 void BSM::logNormalRandomWalk()
 {
     srand((unsigned)time(0));
-
     double callPayoffPot = 0.0;
     double putPayoffPot = 0.0;
-
     double timeStep = (getBsmYears()/getBsmSteps());
     double sqrtTs = sqrt(timeStep);
-
     for (long i = 1; i <= getBsmMonteCarloSims(); i++)
     {
-        double ass = getBsmSteps();
-
+        double ass = getBsmAsset();
         for(int j = 1; j <= getBsmSteps(); j++)
         {
             ass = ass * (1 + getBsmGrowth()*timeStep + getBsmVol()*sqrtTs*(12*rn() - 6));
-
             std::cout << "Step: " << j << " ass: " << ass << std::endl;
         }
+        if (ass > getBsmStrike())
+        {
+            callPayoffPot += (ass - getBsmStrike());
+        }
+        else if (ass < getBsmStrike())
+        {
+            putPayoffPot += (getBsmStrike() - ass);
+        }
+        std::cout << "Call Pot: " << callPayoffPot << std::endl;
+        std::cout << "Put pot:  " << putPayoffPot << std::endl;
     }
+    bsmCallPrice = callPayoffPot / getBsmMonteCarloSims();
+    bsmPutPrice = putPayoffPot / getBsmMonteCarloSims();
+    return;
 }
 
 double BSM::rn()
