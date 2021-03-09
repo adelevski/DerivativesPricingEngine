@@ -14,7 +14,7 @@ BSM::BSM(float ass, float strk, float grwth, float volty, float yrs, long steps,
     bsmMonteCarloSims = sims;
 }
 
-BSM::~BSM(){std::cout << "Destroyed";}
+BSM::~BSM(){}
 
 /*
 
@@ -36,28 +36,47 @@ Asset price 100, Call option, strike price 110
 void BSM::logNormalRandomWalk()
 {
     srand((unsigned)time(0));
+
     double callPayoffPot = 0.0;
     double putPayoffPot = 0.0;
+
     double timeStep = (getBsmYears()/getBsmSteps());
     double sqrtTs = sqrt(timeStep);
+
     for (long i = 1; i <= getBsmMonteCarloSims(); i++)
     {
         double ass = getBsmAsset();
+
         for(int j = 1; j <= getBsmSteps(); j++)
         {
-            ass = ass * (1 + getBsmGrowth()*timeStep + getBsmVol()*sqrtTs*(12*rn() - 6));
-            std::cout << "Step: " << j << " ass: " << ass << std::endl;
+            ass = ass * (1 + getBsmGrowth()*timeStep + getBsmVol()*sqrtTs*(rn() + rn() + rn() + rn() +
+                                                                           rn() + rn() + rn() + rn() +
+                                                                           rn() + rn() + rn() + rn() - 6));
         }
+
+        // std::cout << "Final ass: " << ass << std::endl;
+
         if (ass > getBsmStrike())
         {
             callPayoffPot += (ass - getBsmStrike());
-        }
+        } 
         else if (ass < getBsmStrike())
         {
             putPayoffPot += (getBsmStrike() - ass);
         }
-        std::cout << "Call Pot: " << callPayoffPot << std::endl;
-        std::cout << "Put pot:  " << putPayoffPot << std::endl;
+        // std::cout << "Call Pot: " << callPayoffPot << std::endl;
+        // std::cout << "Put pot:  " << putPayoffPot << std::endl;
+        if ((i % 10000) == 0)
+        {
+            std::cout << "." << std::flush;
+
+            if ((i % 100000) == 0)
+            {
+                long iMess = i/1000;
+
+                std::cout << iMess << "k" << std::flush;
+            }
+        }
     }
     bsmCallPrice = callPayoffPot / getBsmMonteCarloSims();
     bsmPutPrice = putPayoffPot / getBsmMonteCarloSims();
