@@ -1,26 +1,32 @@
 #include <iostream>
 #include "BSM.h"
 
-enum BSMExecution
-{
-    ASSET = 1,
-    STIKE = 2,
-    GROWTH = 3,
-    VOLATILITY = 4,
-    YEARS = 5, 
-    STEPS = 6, 
-    SIMULATIONS = 7
-};
-
 int main(int argc, const char * argv[])
-{                           
-    BSM bsm(atof(argv[ASSET]), 
-            atof(argv[STIKE]), 
-            atof(argv[GROWTH]),
-            atof(argv[VOLATILITY]),
-            atof(argv[YEARS]),
-            atol(argv[STEPS]),
-            atol(argv[SIMULATIONS]));
+{ 
+    float asset;
+    float strike;
+    float growth;
+    float volatility;
+    float years;
+    long steps;
+    long simulations;
+
+    std::cout << "Asset price?: ";
+    std::cin >> asset;
+    std::cout << "Strike price?: "; 
+    std::cin >> strike;
+    std::cout << "Growth?: ";
+    std::cin >> growth;
+    std::cout << "Volatility?: ";
+    std::cin >> volatility;
+    std::cout << "Years?: ";
+    std::cin >> years;
+    std::cout << "Steps?: ";
+    std::cin >> steps;
+    std::cout << "Simulations?: ";
+    std::cin >> simulations;
+
+    BSM bsm(asset, strike, growth, volatility, years, steps, simulations);
 
     std::cout << "Asset:  " << bsm.getBsmAsset() << std::endl <<
                  "Strike: " << bsm.getBsmStrike() << std::endl <<
