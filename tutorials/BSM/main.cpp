@@ -11,20 +11,13 @@ int main(int argc, const char * argv[])
     long steps;
     long simulations;
 
-    std::cout << "Asset price?: ";
-    std::cin >> asset;
-    std::cout << "Strike price?: "; 
-    std::cin >> strike;
-    std::cout << "Growth?: ";
-    std::cin >> growth;
-    std::cout << "Volatility?: ";
-    std::cin >> volatility;
-    std::cout << "Years?: ";
-    std::cin >> years;
-    std::cout << "Steps?: ";
-    std::cin >> steps;
-    std::cout << "Simulations?: ";
-    std::cin >> simulations;
+    std::cout << "Asset price?: "; std::cin >> asset;
+    std::cout << "Strike price?: "; std::cin >> strike;
+    std::cout << "Growth?: "; std::cin >> growth;
+    std::cout << "Volatility?: "; std::cin >> volatility;
+    std::cout << "Years?: "; std::cin >> years;
+    std::cout << "Steps?: "; std::cin >> steps;
+    std::cout << "Simulations?: "; std::cin >> simulations;
 
     BSM bsm(asset, strike, growth, volatility, years, steps, simulations);
 
