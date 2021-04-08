@@ -3,11 +3,11 @@
 #include <time.h>
 
 
-BSM::BSM(float ass, float strk, float grwth, float volty, float yrs, long steps, long sims)
+BSM::BSM(float ass, float strk, float rfr, float volty, float yrs, long steps, long sims)
 {
     bsmAsset = ass;
     bsmStrike = strk;
-    bsmGrowth = grwth;
+    bsmRFR = rfr;
     bsmVol = volty;
     bsmYears = yrs;
     bsmSteps = steps;
@@ -49,7 +49,7 @@ void BSM::logNormalRandomWalk()
 
         for(int j = 1; j <= getBsmSteps(); j++)
         {
-            ass = ass * (1 + getBsmGrowth()*timeStep + getBsmVol()*sqrtTs*(rn() + rn() + rn() + rn() +
+            ass = ass * (1 + getBsmRFR()*timeStep + getBsmVol()*sqrtTs*(rn() + rn() + rn() + rn() +
                                                                            rn() + rn() + rn() + rn() +
                                                                            rn() + rn() + rn() + rn() - 6));
         }
@@ -90,7 +90,7 @@ double BSM::rn()
 
 float BSM::getBsmAsset(){return bsmAsset;}
 float BSM::getBsmStrike(){return bsmStrike;}
-float BSM::getBsmGrowth(){return bsmGrowth;}
+float BSM::getBsmRFR(){return bsmRFR;}
 float BSM::getBsmVol(){return bsmVol;}
 float BSM::getBsmYears(){return bsmYears;}
 long BSM::getBsmSteps(){return bsmSteps;}

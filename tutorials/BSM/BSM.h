@@ -12,7 +12,7 @@ class BSM
 
         float getBsmAsset();
         float getBsmStrike();
-        float getBsmGrowth();
+        float getBsmRFR();
         float getBsmVol();
         float getBsmYears();
         long getBsmSteps();
@@ -28,7 +28,7 @@ class BSM
         
         float bsmAsset;
         float bsmStrike;
-        float bsmGrowth;
+        float bsmRFR;
         float bsmVol;
         float bsmYears;
         long bsmSteps;

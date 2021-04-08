@@ -5,7 +5,7 @@ int main(int argc, const char * argv[])
 { 
     float asset;
     float strike;
-    float growth;
+    float rfr;
     float volatility;
     float years;
     long steps;
@@ -13,17 +13,18 @@ int main(int argc, const char * argv[])
 
     std::cout << "Asset price?: "; std::cin >> asset;
     std::cout << "Strike price?: "; std::cin >> strike;
-    std::cout << "Growth?: "; std::cin >> growth;
+    std::cout << "RFR?: "; std::cin >> rfr;
     std::cout << "Volatility?: "; std::cin >> volatility;
     std::cout << "Years?: "; std::cin >> years;
     std::cout << "Steps?: "; std::cin >> steps;
     std::cout << "Simulations?: "; std::cin >> simulations;
+    std::cout << "One moment please! \n" << std::endl;
 
-    BSM bsm(asset, strike, growth, volatility, years, steps, simulations);
+    BSM bsm(asset, strike, rfr, volatility, years, steps, simulations);
 
     std::cout << "Asset:  " << bsm.getBsmAsset() << std::endl <<
                  "Strike: " << bsm.getBsmStrike() << std::endl <<
-                 "Growth: " << bsm.getBsmGrowth() << std::endl <<
+                 "RFR: " << bsm.getBsmRFR() << std::endl <<
                  "Vol:    " << bsm.getBsmVol() << std::endl <<
                  "Years:  " << bsm.getBsmYears() << std::endl <<
                  "Steps:  " << bsm.getBsmSteps() << std::endl <<
