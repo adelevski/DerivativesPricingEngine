@@ -22,7 +22,7 @@ class BSM
         double getCallPrice();
         double getPutPrice();
 
-        double rn(); 
+        double rn(int); 
 
     private:
         

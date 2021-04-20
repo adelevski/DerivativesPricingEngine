@@ -49,9 +49,7 @@ void BSM::logNormalRandomWalk()
 
         for(int j = 1; j <= getBsmSteps(); j++)
         {
-            ass = ass * (1 + getBsmRFR()*timeStep + getBsmVol()*sqrtTs*(rn() + rn() + rn() + rn() +
-                                                                           rn() + rn() + rn() + rn() +
-                                                                           rn() + rn() + rn() + rn() - 6));
+            ass = ass * (1 + getBsmRFR()*timeStep + getBsmVol()*sqrtTs*(rn(12) - 6));
         }
 
         // std::cout << "Final ass: " << ass << std::endl;
@@ -83,9 +81,14 @@ void BSM::logNormalRandomWalk()
     return;
 }
 
-double BSM::rn()
+double BSM::rn(int numCalcs)
 {
-    return (double)rand()/(double)(RAND_MAX + 1.0);
+    double total = 0.0;
+    for(int i = 1; i <= numCalcs; i++)
+    {
+        total += (double)rand()/(double)(RAND_MAX + 1.0);
+    }
+    return total;
 }
 
 float BSM::getBsmAsset(){return bsmAsset;}
