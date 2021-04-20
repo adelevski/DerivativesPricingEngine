@@ -24,7 +24,7 @@ int main(int argc, const char * argv[])
 
     std::cout << "Asset:  " << bsm.getBsmAsset() << std::endl <<
                  "Strike: " << bsm.getBsmStrike() << std::endl <<
-                 "RFR: " << bsm.getBsmRFR() << std::endl <<
+                 "RFR:    " << bsm.getBsmRFR() << std::endl <<
                  "Vol:    " << bsm.getBsmVol() << std::endl <<
                  "Years:  " << bsm.getBsmYears() << std::endl <<
                  "Steps:  " << bsm.getBsmSteps() << std::endl <<

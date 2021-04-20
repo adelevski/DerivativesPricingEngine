@@ -86,7 +86,7 @@ double BSM::rn(int numCalcs)
     double total = 0.0;
     for(int i = 1; i <= numCalcs; i++)
     {
-        total += (double)rand()/(double)(RAND_MAX + 1.0);
+        total += ((double)rand()/(double)(RAND_MAX + 1.0));
     }
     return total;
 }
