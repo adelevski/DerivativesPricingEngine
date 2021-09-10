@@ -1,20 +1,21 @@
-#include "BSM.h"
+#include "BlackScholesModel.h"
 #include <math.h>
 #include <time.h>
 
 
-BSM::BSM(float ass, float strk, float rfr, float volty, float yrs, long steps, long sims)
+BlackScholesModel::BlackScholesModel(float a_price, float s_price, float rfr, 
+                                     float vol, float yrs, long steps, long sims)
 {
-    bsmAsset = ass;
-    bsmStrike = strk;
-    bsmRFR = rfr;
-    bsmVol = volty;
-    bsmYears = yrs;
-    bsmSteps = steps;
-    bsmMonteCarloSims = sims;
+    asset_price = a_price;
+    strike_price = s_price;
+    rfr = rfr;
+    volatility = vol;
+    num_years = yrs;
+    num_steps = steps;
+    num_simulations = sims;
 }
 
-BSM::~BSM(){}
+BlackScholesModel::~BlackScholesModel(){}
 
 /*
 
@@ -33,73 +34,70 @@ Asset price 100, Call option, strike price 110
 
  */                               
 
-void BSM::logNormalRandomWalk()
+void BlackScholesModel::log_normal_random_walk()
 {
     srand((unsigned)time(0));
 
-    double callPayoffPot = 0.0;
-    double putPayoffPot = 0.0;
+    double call_payoff_pot = 0.0;
+    double put_payoff_pot = 0.0;
 
-    double timeStep = (getBsmYears()/getBsmSteps());
-    double sqrtTs = sqrt(timeStep);
+    double time_step = (get_num_years()/get_num_steps());
+    double sqrt_ts = sqrt(time_step);
 
-    for (long i = 1; i <= getBsmMonteCarloSims(); i++)
+    for (long i = 1; i <= get_num_simulations(); i++)
     {
-        double ass = getBsmAsset();
+        double a_price = get_asset_price();
 
-        for(int j = 1; j <= getBsmSteps(); j++)
+        for(int j = 1; j <= get_num_steps(); j++)
         {
-            ass = ass * (1 + getBsmRFR()*timeStep + getBsmVol()*sqrtTs*(rn(12) - 6));
+            a_price = a_price * (1 + get_rfr()*time_step + get_volatility()*sqrt_ts*(random_number(12) - 6));
         }
 
-        // std::cout << "Final ass: " << ass << std::endl;
-
-        if (ass > getBsmStrike())
+        if (a_price > get_strike_price())
         {
-            callPayoffPot += (ass - getBsmStrike());
+            call_payoff_pot += (a_price - get_strike_price());
         } 
-        else if (ass < getBsmStrike())
+        else if (a_price < get_strike_price())
         {
-            putPayoffPot += (getBsmStrike() - ass);
+            put_payoff_pot += (get_strike_price() - a_price);
         }
-        // std::cout << "Call Pot: " << callPayoffPot << std::endl;
-        // std::cout << "Put pot:  " << putPayoffPot << std::endl;
+
         if ((i % 10000) == 0)
         {
             std::cout << "." << std::flush;
 
             if ((i % 100000) == 0)
             {
-                long iMess = i/1000;
-
-                std::cout << iMess << "k" << std::flush;
+                std::cout << i/1000 << "k" << std::flush;
             }
         }
     }
-    bsmCallPrice = callPayoffPot / getBsmMonteCarloSims();
-    bsmPutPrice = putPayoffPot / getBsmMonteCarloSims();
+
+    call_price = call_payoff_pot / get_num_simulations();
+    put_price = put_payoff_pot / get_num_simulations();
+    
     return;
 }
 
-double BSM::rn(int numCalcs)
+double BlackScholesModel::random_number(int num_calcs)
 {
     double total = 0.0;
-    for(int i = 1; i <= numCalcs; i++)
+    for(int i = 1; i <= num_calcs; i++)
     {
         total += ((double)rand()/(double)(RAND_MAX + 1.0));
     }
     return total;
 }
 
-float BSM::getBsmAsset(){return bsmAsset;}
-float BSM::getBsmStrike(){return bsmStrike;}
-float BSM::getBsmRFR(){return bsmRFR;}
-float BSM::getBsmVol(){return bsmVol;}
-float BSM::getBsmYears(){return bsmYears;}
-long BSM::getBsmSteps(){return bsmSteps;}
-long BSM::getBsmMonteCarloSims(){return bsmMonteCarloSims;}
+float BlackScholesModel::get_asset_price(){return asset_price;}
+float BlackScholesModel::get_strike_price(){return strike_price;}
+float BlackScholesModel::get_rfr(){return rfr;}
+float BlackScholesModel::get_volatility(){return volatility;}
+float BlackScholesModel::get_num_years(){return num_years;}
+long BlackScholesModel::get_num_steps(){return num_steps;}
+long BlackScholesModel::get_num_simulations(){return num_simulations;}
 
-double BSM::getCallPrice(){return bsmCallPrice;}
-double BSM::getPutPrice(){return bsmPutPrice;}
+double BlackScholesModel::get_call_price(){return call_price;}
+double BlackScholesModel::get_put_price(){return put_price;}
 
 

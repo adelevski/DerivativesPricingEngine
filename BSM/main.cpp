@@ -1,41 +1,33 @@
 #include <iostream>
-#include "BSM.h"
+#include "BlackScholesModel.h"
 
 int main(int argc, const char * argv[])
 { 
-    float asset;
-    float strike;
+    float a_price;
+    float s_price;
     float rfr;
-    float volatility;
-    float years;
+    float vol;
+    float yrs;
     long steps;
-    long simulations;
+    long sims;
 
-    std::cout << "Asset price?: "; std::cin >> asset;
-    std::cout << "Strike price?: "; std::cin >> strike;
+    std::cout << "Asset price?: "; std::cin >> a_price;
+    std::cout << "Strike price?: "; std::cin >> s_price;
     std::cout << "RFR?: "; std::cin >> rfr;
-    std::cout << "Volatility?: "; std::cin >> volatility;
-    std::cout << "Years?: "; std::cin >> years;
+    std::cout << "Volatility?: "; std::cin >> vol;
+    std::cout << "Years?: "; std::cin >> yrs;
     std::cout << "Steps?: "; std::cin >> steps;
-    std::cout << "Simulations?: "; std::cin >> simulations;
+    std::cout << "Simulations?: "; std::cin >> sims;
     std::cout << "One moment please! \n" << std::endl;
 
-    BSM bsm(asset, strike, rfr, volatility, years, steps, simulations);
+    BlackScholesModel BlackScholesModel(a_price, s_price, rfr, vol, yrs, steps, sims);
 
-    std::cout << "Asset:  " << bsm.getBsmAsset() << std::endl <<
-                 "Strike: " << bsm.getBsmStrike() << std::endl <<
-                 "RFR:    " << bsm.getBsmRFR() << std::endl <<
-                 "Vol:    " << bsm.getBsmVol() << std::endl <<
-                 "Years:  " << bsm.getBsmYears() << std::endl <<
-                 "Steps:  " << bsm.getBsmSteps() << std::endl <<
-                 "Sims:   " << bsm.getBsmMonteCarloSims() << std::endl;
-
-    bsm.logNormalRandomWalk();
+    BlackScholesModel.log_normal_random_walk();
 
     std::cout << std::endl;
      
-    std::cout << "Call option price: " << bsm.getCallPrice() << std::endl;
-    std::cout << "Put option price: " << bsm.getPutPrice() << std::endl;
+    std::cout << "Call option price: " << BlackScholesModel.get_call_price() << std::endl;
+    std::cout << "Put option price: " << BlackScholesModel.get_put_price() << std::endl;
 
     return 0;
 }

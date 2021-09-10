@@ -1,41 +1,41 @@
-#ifndef BSM_H
-#define BSM_H
+#ifndef BlackScholesModel_H
+#define BlackScholesModel_H
 
 #include <iostream>
 
-class BSM
+class BlackScholesModel
 {
     public:
-        BSM(float, float, float, float, float, long, long);
+        BlackScholesModel(float, float, float, float, float, long, long);
 
-        ~BSM();
+        ~BlackScholesModel();
 
-        float getBsmAsset();
-        float getBsmStrike();
-        float getBsmRFR();
-        float getBsmVol();
-        float getBsmYears();
-        long getBsmSteps();
-        long getBsmMonteCarloSims();
+        float get_asset_price();
+        float get_strike_price();
+        float get_rfr();
+        float get_volatility();
+        float get_num_years();
+        long get_num_steps();
+        long get_num_simulations();
 
-        void logNormalRandomWalk();
-        double getCallPrice();
-        double getPutPrice();
+        void log_normal_random_walk();
+        double get_call_price();
+        double get_put_price();
 
-        double rn(int); 
+        double random_number(int); 
 
     private:
         
-        float bsmAsset;
-        float bsmStrike;
-        float bsmRFR;
-        float bsmVol;
-        float bsmYears;
-        long bsmSteps;
-        long bsmMonteCarloSims;
+        float asset_price;
+        float strike_price;
+        float rfr;
+        float volatility;
+        float num_years;
+        long num_steps;
+        long num_simulations;
 
-        double bsmCallPrice;
-        double bsmPutPrice;
+        double call_price;
+        double put_price;
 };
 
 #endif
