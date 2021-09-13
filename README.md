@@ -1,2 +1,2 @@
-# Finance C++
- repo for finacial engineering, BS, Monte Carlo sims, etc..
+# Financial Modeling
+ Repo for various financial modeling scripts.
