@@ -1,25 +1,33 @@
-#include <math.h>
 #include <iostream>
-#include <vector>
-
-
-int f(int& x)
-{
-    x = x - 1;
-    return x;
-}
-
-
-
+#include <iomanip>
+#include <string>
+#include <map>
+#include <random>
+#include <cmath>
 
 int main()
 {
-    int n = 6;
-    std::vector<double> X (n, 5);
-    for (int i = 0; i < (n-1)/2; i++)
-    {
-        // int ind = 2*i;
-        std::cout << X[2*i] << X[2*i+1] << std::endl;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    gen.seed(1);
+    // values near the mean are the most likely
+    // standard deviation affects the dispersion of generated values from the mean
+    std::normal_distribution<> d(0,1);
+ 
+    std::map<int, int> hist;
+    for(int n=0; n<100000; ++n) {
+        ++hist[std::round(d(gen))];
     }
-    
+    for(auto p : hist) {
+        std::cout << std::fixed << std::setprecision(1) << std::setw(2)
+                  << p.first << ' ' << std::string(p.second/1000, '*') << '\n';
+    }
 }
+
+
+std::random_device rd;
+  std::mt19937 gen(rd());
+  gen.seed(1);
+  std::normal_distribution<> d(0,1);
+
+  d(gen)
