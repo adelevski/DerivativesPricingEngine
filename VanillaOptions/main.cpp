@@ -3,6 +3,8 @@
 #include <random>
 #include <math.h>
 
+#include "math_funcs.h"
+
 struct input
 {
     double S, K, T, v, q, r;
@@ -73,10 +75,7 @@ struct cf_prices
     double cf_put;
 };
 
-double norm_cdf(double x)
-{
-    return std::erfc(-x / std::sqrt(2)) / 2;
-}
+
 
 cf_prices black_scholes(
     input& in)
