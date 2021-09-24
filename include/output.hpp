@@ -1,8 +1,8 @@
 #pragma once
 
-#include "input_funcs.hpp"
+#include "input.hpp"
 #include "monte_carlo.hpp"
-#include "cf_funcs.hpp"
+#include "closed_form.hpp"
 
 void print_results(
     input& in,
