@@ -10,4 +10,4 @@ struct cf_prices
 };
 
 cf_prices black_scholes(
-    input& in);
+    Input& in);

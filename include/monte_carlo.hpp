@@ -10,4 +10,4 @@ struct sim_prices
 };
 
 sim_prices monte_carlo(
-    input& in);
+    const Input& in);

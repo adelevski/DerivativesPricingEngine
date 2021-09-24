@@ -1,11 +1,11 @@
 #pragma once
 
 
-struct input
+struct Input
 {
     double S, K, T, v, q, r;
     int num_sims;
 };
 
-input get_input();
+Input get_input();
 

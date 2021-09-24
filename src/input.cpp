@@ -3,9 +3,9 @@
 #include <iostream>
 
 
-input get_input()
+Input get_input()
 {
-    input in;
+    Input in;
     char std;
     std::cout << "Standard? [y/n]: "; std::cin >> std;
     if (std == 'y')
