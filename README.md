@@ -1,4 +1,4 @@
-# Financial Modeling
+# Option pricing engine
 
- Repo for various financial modeling scripts of options and other derivatives
+ Option pricing engine
 
