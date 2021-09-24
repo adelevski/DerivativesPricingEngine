@@ -1,5 +1,7 @@
-#include "math/math_funcs.h"
+#include "math_funcs.hpp"
+
 #include <math.h>
+
 
 double norm_cdf(double x)
 {

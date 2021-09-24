@@ -1,6 +1,8 @@
-#include "output/print_funcs.hpp"
+#include "print_funcs.hpp"
+
 #include <iostream>
 #include <iomanip>
+
 
 void print_results(
     input& in,

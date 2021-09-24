@@ -1,6 +1,6 @@
 #pragma once
 
-#include "input/input_funcs.hpp"
+#include "input_funcs.hpp"
 
 
 struct sim_prices

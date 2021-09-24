@@ -1,10 +1,8 @@
-
-#include "sims/monte_carlo.hpp"
+#include "monte_carlo.hpp"
 
 #include <math.h>
 #include <random>
 #include <time.h>
-
 
 
 sim_prices monte_carlo(

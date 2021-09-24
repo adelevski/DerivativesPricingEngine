@@ -1,5 +1,6 @@
 #pragma once
 
+
 struct input
 {
     double S, K, T, v, q, r;

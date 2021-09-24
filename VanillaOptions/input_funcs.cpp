@@ -1,4 +1,4 @@
-#include "input/input_funcs.hpp"
+#include "input_funcs.hpp"
 
 #include <iostream>
 
