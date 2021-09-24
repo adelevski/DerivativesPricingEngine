@@ -1,5 +1,5 @@
 
-#include "monte_carlo.h"
+#include "sims/monte_carlo.hpp"
 
 #include <math.h>
 #include <random>

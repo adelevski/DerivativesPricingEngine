@@ -1,5 +1,5 @@
-#include "cf_funcs.h"
-#include "math_funcs.h"
+#include "formulas/cf_funcs.hpp"
+#include "math/math_funcs.hpp"
 
 #include <math.h>
 
