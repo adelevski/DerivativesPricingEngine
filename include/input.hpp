@@ -3,7 +3,7 @@
 
 struct Input
 {
-    double S, K, T, v, q, r;
+    double spot, strike, years, volatility, dividend, rate;
     int num_sims;
 };
 
