@@ -3,11 +3,11 @@
 #include "input.hpp"
 
 
-struct sim_prices
+struct Sim_prices
 {
     double sim_call;
     double sim_put;
 };
 
-sim_prices monte_carlo(
+Sim_prices monte_carlo(
     const Input& in);

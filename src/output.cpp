@@ -5,9 +5,9 @@
 
 
 void print_results(
-    input& in,
-    sim_prices& sp,
-    cf_prices& cp)
+    Input& in,
+    Sim_prices& sp,
+    Cf_prices& cp)
 {
     double call_error = cp.cf_call - sp.sim_call;
     double put_error = cp.cf_put - sp.sim_put;

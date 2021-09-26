@@ -3,11 +3,11 @@
 #include "input.hpp"
 
 
-struct cf_prices
+struct Cf_prices
 {
     double cf_call;
     double cf_put;
 };
 
-cf_prices black_scholes(
+Cf_prices black_scholes(
     Input& in);
