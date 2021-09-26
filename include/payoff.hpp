@@ -1,9 +1,6 @@
 #pragma once
 
 
-struct Pot
-
-
 class Payoff
 {
 public:
