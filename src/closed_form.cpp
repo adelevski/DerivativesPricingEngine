@@ -5,18 +5,13 @@
 #include "math_functions.hpp"
 
 
-// Cf_prices black_scholes(
-//     Input& in)
-// {
-//     double d1 = (log(in.spot / in.strike) + 
-//             (in.rate - in.dividend + 0.5 * in.volatility * in.volatility) * 
-//             in.years) / in.volatility / sqrt(in.years);
-//     double d2 = d1 - in.volatility * sqrt(in.years);
-
-//     Cf_prices cp;
-//     cp.cf_call = in.spot * exp(-in.dividend * in.years) * norm_cdf(d1) - 
-//                     in.strike * exp(-in.rate * in.years) * norm_cdf(d2);
-//     cp.cf_put = cp.cf_call - in.spot * exp(-in.dividend * in.years) + 
-//                             in.strike * exp(-in.rate * in.years);
-//     return cp;
-// }
+cf_prices black_scholes(
+    input& in)
+{
+    double d1 = (log(in.S / in.K) + (in.r - in.q + 0.5 * in.v * in.v) * in.T) / in.v / sqrt(in.T);
+    double d2 = d1 - in.v * sqrt(in.T);
+    cf_prices cp;
+    cp.cf_call = in.S * exp(-in.q * in.T) * norm_cdf(d1) - in.K * exp(-in.r * in.T) * norm_cdf(d2);
+    cp.cf_put = cp.cf_call - in.S * exp(-in.q * in.T) + in.K * exp(-in.r * in.T);
+    return cp;
+}

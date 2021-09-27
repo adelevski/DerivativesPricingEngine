@@ -5,24 +5,25 @@
 #include <time.h>
 
 
-double monte_carlo(
-    const Input& in)
+sim_prices monte_carlo(
+    input& in)
 {
-    double years = in.option_ptr->get_years();
-    double cur_price, pot;
-    double adjustment = in.spot * exp((in.rate - in.dividend - 
-                            0.5 * in.volatility * in.volatility) * years);
+    double S_current, call_pot, put_pot;
+    double S_adjusted = in.S * exp((in.r - in.q - 0.5 * in.v * in.v) * in.T);
 
     std::random_device rd;
     std::mt19937 gen(rd());
     std::normal_distribution<> d(0,1);
     gen.seed(time(0));
+
     for (int i = 0; i < in.num_sims; i++)
     {
-        cur_price = adjustment * exp(in.volatility * sqrt(years) * d(gen));
-        double payoff = in.option_ptr->option_payoff(cur_price);
-        pot += payoff;
+        S_current = S_adjusted * exp(in.v * sqrt(in.T) * d(gen));
+        call_pot += std::max(S_current - in.K, 0.0);
+        put_pot += std::max(in.K - S_current, 0.0);
     }
-    double final_price = exp(-in.rate * years) * (pot / in.num_sims);
-    return final_price;
+    sim_prices sp;
+    sp.sim_call = exp(-in.r * in.T) * (call_pot / in.num_sims);
+    sp.sim_put = exp(-in.r * in.T) * (put_pot / in.num_sims);
+    return sp;
 }

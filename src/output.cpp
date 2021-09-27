@@ -5,25 +5,21 @@
 
 
 void print_results(
-    const Input& in,
-    double sim_call,
-    double sim_put,
-    const Cf_prices& cp)
+    input& in,
+    sim_prices& sp,
+    cf_prices& cp)
 {
-    double call_error = cp.cf_call - sim_call;
-    double put_error = cp.cf_put - sim_put;
+    double call_error = cp.cf_call - sp.sim_call;
+    double put_error = cp.cf_put - sp.sim_put;
 
     std::cout << std::setprecision(4) << std::fixed;
-    std::cout << "Using " << in.num_sims << " simulations...\n";
-    std::cout << "=================================\n";
-    std::cout << "Method      |   call   |   put   \n";        
-    std::cout << "---------------------------------\n";
-    std::cout << "Simulation  |  " << sim_call   << " |  " << sim_put;
-    std::cout << std::endl;
-    std::cout << "Closed form |  " << cp.cf_call << " |  " << cp.cf_put;
-    std::cout << std::endl;
-    std::cout << "---------------------------------\n";
-    std::cout << "Error:         " << call_error  << "    " << put_error;
-    std::cout << std::endl;
-    std::cout << "=================================\n";
+    std::cout << "Using " << in.num_sims << " simulations..."               << std::endl;
+    std::cout << "================================="                        << std::endl;
+    std::cout << "Method      |   call   |   put   "                        << std::endl;
+    std::cout << "---------------------------------"                        << std::endl;
+    std::cout << "Simulation  |  " << sp.sim_call   << " |  " << sp.sim_put << std::endl;
+    std::cout << "Closed form |  " << cp.cf_call    << " |  " << cp.cf_put  << std::endl;
+    std::cout << "---------------------------------"                        << std::endl;
+    std::cout << "Error:         " << call_error    << "    " << put_error  << std::endl;
+    std::cout << "================================="                        << std::endl;
 }

@@ -1,17 +1,10 @@
 #pragma once
-#include "option.hpp"
 
 
-struct Input
+struct input
 {
-    Option* option_ptr;
-    double spot, volatility, dividend, rate;
+    double S, K, T, v, q, r;
     int num_sims;
 };
 
-
-Input get_input();
-
-int repeat();
-int choice_menu();
-Input dd_menu();
+input get_input();

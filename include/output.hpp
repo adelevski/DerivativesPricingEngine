@@ -5,7 +5,6 @@
 #include "closed_form.hpp"
 
 void print_results(
-    Input& in,
-    double sim_call,
-    double put_call,
-    Cf_prices& cp);
+    input& in,
+    sim_prices& sp,
+    cf_prices& cp);
