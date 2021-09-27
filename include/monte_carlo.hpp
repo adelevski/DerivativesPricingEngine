@@ -5,4 +5,4 @@
 
 double monte_carlo(
     const Input& in,
-    const Payoff& payoff);
+    const Option& option_ptr);

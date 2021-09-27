@@ -6,5 +6,6 @@
 
 void print_results(
     Input& in,
-    Sim_prices& sp,
+    double sim_call,
+    double put_call,
     Cf_prices& cp);

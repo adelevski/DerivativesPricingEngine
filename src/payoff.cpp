@@ -5,24 +5,82 @@
 #include "math_functions.hpp"
 
 
-Payoff::Payoff(double strike, option_type type)
-    : strike_(strike), type_(type)
+PayoffCall::PayoffCall(double strike)
+    : strike_(strike)
+{}
+
+PayoffPut::PayoffPut(double strike)
+    : strike_(strike)
+{}
+
+PayoffDigitalCall::PayoffDigitalCall(double strike)
+    : strike_(strike)
+{}
+
+PayoffDigitalPut::PayoffDigitalPut(double strike)
+    : strike_(strike)
+{}
+
+PayoffDoubleDigital::PayoffDoubleDigital(
+    double lower_strike,
+    double upper_strike)
+    : lower_strike_(lower_strike), upper_strike_(upper_strike)
+{}
+
+
+double PayoffCall::operator()(double price) const
 {
+    return std::max(price - strike_, 0.0)
 }
 
-double Payoff::operator()(double price) const
+double PayoffPut::operator()(double price) const
 {
-    switch(type_)
+    return std::max(strike_ - price, 0.0)
+}
+
+double PayoffDigitalCall::operator()(double price) const
+{
+    return step_func(price - strike_)
+}
+
+double PayoffDigitalPut::operator()(double price) const
+{
+    return step_func(strike_ - price)
+}
+
+double PayoffDoubleDigital::operator()(double price) const
+{
+    if (price >= lower_strike_ && price <= upper_strike_)
     {
-        case call:
-            return std::max(price - strike_, 0.0);
-        case put:
-            return std::max(strike_ - price, 0.0);
-        case digital_call:
-            return step_func(price - strike_);
-        case digital_put:
-            return step_func(strike_ - price);
-        default:
-            throw("Use proper option type!");
+        return 1.0;
     }
+    else
+    {
+        return 0.0;
+    }
+}
+
+Payoff* PayoffCall::clone() const
+{
+    return new PayoffCall(*this);
+}
+
+Payoff* PayoffPut::clone() const
+{
+    return new PayoffPut(*this);
+}
+
+Payoff* PayoffDigitalCall::clone() const
+{
+    return new PayoffDigitalCall(*this);
+}
+
+Payoff* PayoffDigitalPut::clone() const
+{
+    return new PayoffDigitalPut(*this);
+}
+
+Payoff* PayoffDoubleDigital::clone() const
+{
+    return new PayoffCall(*this);
 }

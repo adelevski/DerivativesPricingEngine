@@ -1,17 +1,17 @@
 #pragma once
+#include "option.hpp"
 
 
 struct Input
 {
-    double spot, strike, years, volatility, dividend, rate;
+    Option* option_ptr[2];
+    double spot, volatility, dividend, rate;
     int num_sims;
 };
 
+
 Input get_input();
 
-class Input
-{
-public:
-    
-private:
-}
+int repeat();
+int choice_menu();
+Input dd_menu();

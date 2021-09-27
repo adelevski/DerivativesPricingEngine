@@ -10,4 +10,4 @@ struct Cf_prices
 };
 
 Cf_prices black_scholes(
-    Input& in);
+    const Input& in);
