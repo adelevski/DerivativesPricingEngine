@@ -20,7 +20,7 @@ Sim_prices monte_carlo(
     gen.seed(time(0));
 
     Payoff call_payoff(in.strike, Payoff::call);
-    Payoff put_payoff(in.strike, Payoff::put)
+    Payoff put_payoff(in.strike, Payoff::put);
 
     for (int i = 0; i < in.num_sims; i++)
     {

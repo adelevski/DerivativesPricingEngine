@@ -1,6 +1,6 @@
 #include "payoff.hpp"
 
-#include <math.h>
+#include <algorithm>
 
 #include "math_functions.hpp"
 

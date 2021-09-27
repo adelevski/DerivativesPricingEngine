@@ -8,7 +8,7 @@ double norm_cdf(double& x)
     return std::erfc(-x / std::sqrt(2)) / 2;
 }
 
-double step_func(double& x)
+double step_func(const double& x)
 {
     if (x >= 0)
     {
