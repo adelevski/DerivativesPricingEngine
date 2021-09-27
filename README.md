@@ -1,3 +1,3 @@
 # Derivatives Pricing Engine
 
-A comprehensive derivatives pricing engine which enables the user to choose various different option types and then uses monte carlo techniques for pricing. Closed form analytical solutions are used for error checking when possible.
+A lightweight European vanilla option pricing engine that uses Monte Carlo methods to simulate asset prices after a given amount of time, and uses the results to price call and put contracts. Standard error is calculated using the closed-form Black-Sholes-Merton model for option pricing. 
