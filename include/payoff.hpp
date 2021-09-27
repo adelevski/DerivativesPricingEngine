@@ -4,14 +4,62 @@
 class Payoff
 {
 public:
-    enum option_type { call, put, digital_call, digital_put };
-
-    Payoff(double strike, option_type type);
-
-    double operator()(double price) const;
+    Payoff() {};
+    virtual double operator()(double price) const = 0;
+    virtual ~Payoff() {};
 
 private:
-    double strike_;
-    option_type type_;
 };
 
+
+class PayoffCall : public Payoff
+{
+public:
+    PayoffCall(double strike);
+    virtual double operator()(double price) const;
+    virtual ~PayoffCall() {};
+private:
+    double strike_;
+}
+
+class PayoffPut : public Payoff
+{
+public:
+    PayoffPut(double strike);
+    virtual double operator()(double price) const;
+    virtual ~PayoffPut() {};
+private:
+    double strike_;
+}
+
+class PayoffDigitalCall : public Payoff
+{
+public:
+    PayoffDigitalCall(double strike);
+    virtual double operator()(double price) const;
+    virtual ~PayoffDigitalCall() {};
+private:
+    double strike_;
+}
+
+class PayoffDigitalPut : public Payoff
+{
+public:
+    PayoffDigitalPut(double strike);
+    virtual double operator()(double price) const;
+    virtual ~PayoffDigitalPut() {};
+private:
+    double strike_;
+}
+
+
+class PayoffDoubleDigital : public Payoff
+{
+public:
+    PayoffDoubleDigital(double upper_strike, double lower_strike);
+    virtual double operator()(double price) const;
+    virtual ~PayoffDoubleDigital() {};
+private:
+    double upper_strike_;
+    double lower_strike_;
+}

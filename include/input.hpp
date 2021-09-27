@@ -9,3 +9,9 @@ struct Input
 
 Input get_input();
 
+class Input
+{
+public:
+    
+private:
+}
