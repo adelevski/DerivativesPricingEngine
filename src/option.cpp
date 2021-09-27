@@ -15,7 +15,7 @@ Option::Option(const Option& original)
 
 Option& Option::operator=(const Option& original)
 {
-    if (this != original)
+    if (this != &original)
     {
         years_ = original.years_;
         delete payoff_ptr_;

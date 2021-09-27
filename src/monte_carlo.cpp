@@ -6,10 +6,9 @@
 
 
 double monte_carlo(
-    const Input& in,
-    const Option& option_ptr)
+    const Input& in)
 {
-    years = option_ptr->get_years();
+    double years = in.option_ptr->get_years();
     double cur_price, pot;
     double adjustment = in.spot * exp((in.rate - in.dividend - 
                             0.5 * in.volatility * in.volatility) * years);
@@ -21,9 +20,9 @@ double monte_carlo(
     for (int i = 0; i < in.num_sims; i++)
     {
         cur_price = adjustment * exp(in.volatility * sqrt(years) * d(gen));
-        double payoff = option_ptr->option_payoff(cur_price)
-        pot += payoff
+        double payoff = in.option_ptr->option_payoff(cur_price);
+        pot += payoff;
     }
-    final_price = exp(-in.rate * years) * (pot / in.num_sims);
+    double final_price = exp(-in.rate * years) * (pot / in.num_sims);
     return final_price;
 }

@@ -4,7 +4,7 @@
 
 struct Input
 {
-    Option* option_ptr[2];
+    Option* option_ptr;
     double spot, volatility, dividend, rate;
     int num_sims;
 };

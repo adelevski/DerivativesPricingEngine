@@ -30,22 +30,22 @@ PayoffDoubleDigital::PayoffDoubleDigital(
 
 double PayoffCall::operator()(double price) const
 {
-    return std::max(price - strike_, 0.0)
+    return std::max(price - strike_, 0.0);
 }
 
 double PayoffPut::operator()(double price) const
 {
-    return std::max(strike_ - price, 0.0)
+    return std::max(strike_ - price, 0.0);
 }
 
 double PayoffDigitalCall::operator()(double price) const
 {
-    return step_func(price - strike_)
+    return step_func(price - strike_);
 }
 
 double PayoffDigitalPut::operator()(double price) const
 {
-    return step_func(strike_ - price)
+    return step_func(strike_ - price);
 }
 
 double PayoffDoubleDigital::operator()(double price) const
@@ -82,5 +82,5 @@ Payoff* PayoffDigitalPut::clone() const
 
 Payoff* PayoffDoubleDigital::clone() const
 {
-    return new PayoffCall(*this);
+    return new PayoffDoubleDigital(*this);
 }

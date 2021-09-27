@@ -15,10 +15,12 @@ int repeat()
 int choice_menu()
 {
     int choice;
-    std::cout << "Please select the type of option to be priced\n"
-    std::cout << "1) European vanilla\n"
-    std::cout << "2) European digital\n"
-    std::cout << "3) European double digital\n"
+    std::cout << "Please select the type of option to be priced\n";
+    std::cout << "1) European vanilla call\n";
+    std::cout << "2) European vanilla put\n";
+    std::cout << "3) European digital call\n";
+    std::cout << "4) European digital put\n";
+    std::cout << "5) European double digital\n";
     std::cout << "Choice?: "; std::cin >> choice;
     return choice;
 }
@@ -37,7 +39,7 @@ Input dd_menu()
     std::cout << "Simulations?: ";    std::cin >> in.num_sims;
     PayoffDoubleDigital payoff(lower, upper);
     Option option(payoff, years);
-    in.option_ptr[0] = &option;
+    in.option_ptr = &option;
     return in;
 }
 
@@ -45,7 +47,7 @@ Input get_input()
 {
     int choice = choice_menu();
 
-    if (choice == 3)
+    if (choice == 5)
     {
         Input in = dd_menu();
         return in;
@@ -62,20 +64,41 @@ Input get_input()
             in.dividend = 0.0;
             in.rate = 0.05;
             in.num_sims = 1e7;
-            if (choice == 1)
+            switch (choice)
             {
-                PayoffCall call_payoff(100);
-                PayoffPut put_payoff(100);
+                case 1:
+                {
+                    PayoffCall call_payoff(100);
+                    Option call_option(call_payoff, 1.0);
+                    in.option_ptr = &call_option;
+                    return in;
+                }
+                case 2:
+                {
+                    PayoffPut put_payoff(100);
+                    Option put_option(put_payoff, 1.0);
+                    in.option_ptr = &put_option;
+                    return in;
+                }
+                case 3:
+                {
+                    PayoffDigitalCall dig_call_payoff(100);
+                    Option dig_call_option(dig_call_payoff, 1.0);
+                    in.option_ptr = &dig_call_option;
+                    return in;
+                }
+                case 4:
+                {
+                    PayoffDigitalPut dig_put_payoff(100);
+                    Option dig_put_option(dig_put_payoff, 1.0);
+                    in.option_ptr = &dig_put_option;
+                    return in;
+                }
+                default:
+                {
+                    throw("Not proper choice!");
+                }
             }
-            else if (choice == 2)
-            {
-                PayoffDigitalCall call_payoff(100);
-                PayoffDigitalPut put_payoff(100);
-            }
-            Option call_option(call_payoff, 1);
-            Option put_option(put_payoff, 1);
-            in.option_ptr[0] = call_option;
-            in.option_ptr[1] = put_option;
         }
         else
         {
@@ -87,25 +110,42 @@ Input get_input()
             std::cout << "Dividend yield?: "; std::cin >> in.dividend;
             std::cout << "RFR?: ";            std::cin >> in.rate;
             std::cout << "Simulations?: ";    std::cin >> in.num_sims;
-            if (choice == 1)
+            switch (choice)
             {
-                PayoffCall call_payoff(strike);
-                PayoffPut put_payoff(strike);
+                case 1:
+                {
+                    PayoffCall call_payoff(strike);
+                    Option call_option(call_payoff, years);
+                    in.option_ptr = &call_option;
+                    return in;
+                }
+                case 2:
+                {
+                    PayoffPut put_payoff(strike);
+                    Option put_option(put_payoff, years);
+                    in.option_ptr = &put_option;
+                    return in;
+                }
+                case 3:
+                {
+                    PayoffDigitalCall dig_call_payoff(strike);
+                    Option dig_call_option(dig_call_payoff, years);
+                    in.option_ptr = &dig_call_option;
+                    return in;
+                }
+                case 4:
+                {
+                    PayoffDigitalPut dig_put_payoff(strike);
+                    Option dig_put_option(dig_put_payoff, years);
+                    in.option_ptr = &dig_put_option;
+                    return in;
+                }
+                default:
+                {
+                    throw("Not proper choice!");
+                }
             }
-            else if (choice == 2)
-            {
-                PayoffDigitalCall call_payoff(strike);
-                PayoffDigitalPut put_payoff(strike);
-            }
-            Option call_option(call_payoff, years);
-            Option put_option(put_payoff, years);
-            in.option_ptr[0] = call_option;
-            in.option_ptr[1] = put_option;
         }
     }
-
-    
-	std::cout << "One moment please!\n" << std::endl;
-    return in;
 }
 
