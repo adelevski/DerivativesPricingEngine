@@ -16,7 +16,7 @@ input get_input()
         in.v = 0.2;
         in.q = 0.0;
         in.r = 0.05;
-        in.num_sims = 1e7;
+        in.num_sims = 3e5;
     }
     else
     {

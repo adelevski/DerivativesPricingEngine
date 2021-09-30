@@ -11,3 +11,6 @@ struct sim_prices
 
 sim_prices monte_carlo(
     input& in);
+
+sim_prices monte_carlo2(
+    input& in);
