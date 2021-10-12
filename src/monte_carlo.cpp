@@ -4,12 +4,17 @@
 #include <random>
 #include <time.h>
 
+#include "payoff.hpp"
 
-sim_prices monte_carlo(
+
+sim_prices simple_monte_carlo(
     input& in)
 {
     double S_current, call_pot, put_pot;
     double S_adjusted = in.S * exp((in.r - in.q - 0.5 * in.v * in.v) * in.T);
+
+    call_payoff call_po(in.K);
+    put_payoff put_po(in.K);
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -19,8 +24,8 @@ sim_prices monte_carlo(
     for (int i = 0; i < in.num_sims; i++)
     {
         S_current = S_adjusted * exp(in.v * sqrt(in.T) * d(gen));
-        call_pot += std::max(S_current - in.K, 0.0);
-        put_pot += std::max(in.K - S_current, 0.0);
+        call_pot += call_po(S_current);
+        put_pot += put_po(S_current);
     }
     sim_prices sp;
     sp.sim_call = exp(-in.r * in.T) * (call_pot / in.num_sims);
@@ -30,12 +35,15 @@ sim_prices monte_carlo(
 
 
 
-sim_prices monte_carlo2(
+sim_prices path_dependent_monte_carlo(
     input& in)
 {
     double call_pot, put_pot;
     double dt = in.T / 253.0;
-    
+
+    call_payoff call_po(in.K);
+    put_payoff put_po(in.K);
+
     std::random_device rd;
     std::mt19937 gen(rd());
     std::normal_distribution<> d(0, sqrt(dt));
@@ -53,8 +61,8 @@ sim_prices monte_carlo2(
             S_current += dYt;
             T -= dt;
         }
-        call_pot += std::max(S_current - in.K, 0.0);
-        put_pot += std::max(in.K - S_current, 0.0);
+        call_pot += call_po(S_current);
+        put_pot += put_po(S_current);
     }
     sim_prices sp;
     sp.sim_call = exp(-in.r * in.T) * (call_pot / in.num_sims);

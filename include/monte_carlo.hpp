@@ -9,8 +9,8 @@ struct sim_prices
     double sim_put;
 };
 
-sim_prices monte_carlo(
+sim_prices simple_monte_carlo(
     input& in);
 
-sim_prices monte_carlo2(
+sim_prices path_dependent_monte_carlo(
     input& in);
