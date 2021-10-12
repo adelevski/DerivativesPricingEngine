@@ -13,4 +13,4 @@ sim_prices euro_monte_carlo(
     input& in);
 
 sim_prices asian_monte_carlo(
-    input& in);
+    asian_input& in);

@@ -41,7 +41,7 @@ sim_prices euro_monte_carlo(
 
 
 sim_prices asian_monte_carlo(
-    input& in)
+    asian_input& in)
 {
     double call_pot, put_pot, shock;
     double dt = 1 / 252.0;
@@ -56,8 +56,17 @@ sim_prices asian_monte_carlo(
     put_payoff put_po(in.K);
     put_payoff* put_ptr = &put_po;
 
-    arithmetic_asian asian_call(call_ptr);
-    arithmetic_asian asian_put(put_ptr);
+    if (in.type == 'a')
+    {
+        arithmetic_asian asian_call(call_ptr);
+        arithmetic_asian asian_put(put_ptr);
+    }
+    else
+    {
+        geometric_asian asian_call(call_ptr);
+        geometric_asian asian_put(put_ptr);
+    }
+    
 
     std::random_device rd;
     std::mt19937 gen(rd());
