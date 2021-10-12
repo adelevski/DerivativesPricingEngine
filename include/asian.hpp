@@ -17,7 +17,7 @@ protected:
 };
 
 
-class arithmetic_asian : asian_option
+class arithmetic_asian : public asian_option
 {
 public:
     arithmetic_asian(payoff* po);
@@ -26,7 +26,7 @@ public:
 };
 
 
-class geometric_asian : asian_option 
+class geometric_asian : public asian_option 
 {
 public:
     geometric_asian(payoff* po);

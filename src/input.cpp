@@ -7,7 +7,7 @@ input get_simple_input()
 {
     input in;
     char choice;
-    std::cout << "Standard? [y/n]: "; std::cin >> choice;
+    std::cout << "Debug input? [y/n]: "; std::cin >> choice;
     if (choice == 'y')
     {
         in.S = 100;

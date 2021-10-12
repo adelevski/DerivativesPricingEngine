@@ -5,8 +5,7 @@
 #include "math_functions.hpp"
 
 
-cf_prices black_scholes(
-    input& in)
+cf_prices black_scholes(input& in)
 {
     double d1 = (log(in.S / in.K) + (in.r - in.q + 0.5 * in.v * in.v) * in.T) / in.v / sqrt(in.T);
     double d2 = d1 - in.v * sqrt(in.T);
