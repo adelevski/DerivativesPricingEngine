@@ -5,7 +5,7 @@ A lightweight option pricing engine that uses Monte Carlo methods to simulate as
 Currently implemented:
 - European vanilla
 - Asian arithmetic fixed-strike
-- Asian geometric fixed-strike options 
+- Asian geometric fixed-strike 
 
 Standard error for European options is calculated using the closed-form Black-Sholes-Merton model for option pricing. 
 
@@ -14,5 +14,7 @@ The very simplistic GUI asks the user if they want to price Asian or European, a
 ### To Do
 
 - Implement digitals
-- Implement double digital
+- Implement double digitals
+- Implement American options
 - Implement closed form solutions for Asian options
+
