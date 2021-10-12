@@ -7,4 +7,4 @@ struct input
     int num_sims;
 };
 
-input get_input();
+input get_simple_input();

@@ -11,14 +11,37 @@ char repeat()
     return choice; 
 }
 
+char type()
+{
+    char choice;
+    std::cout << "Asian or European? [a/e]: ";
+    std::cin >> choice;
+    return choice;
+}
+
 int main()
 {
     while (true)
     {
-        input in = get_input();
-        sim_prices sp = path_dependent_monte_carlo(in);
-        cf_prices cp = black_scholes(in);
-        print_results(in, sp, cp);
+        char choice = type();
+        if (choice == 'a')
+        {
+            input in = get_asian_input();
+            sim_prices sp = asian_monte_carlo(in);
+            print_asian_results(in, sp);
+        }
+        else if (choice == 'e')
+        {
+            input in = get_simple_input();
+            sim_prices sp = simple_monte_carlo(in);
+            cf_prices cp = black_scholes(in);
+            print_simple_results(in, sp, cp);
+        }
+        else
+        {
+            break
+        }
+        
         char choice = repeat();
         if (choice != 'y')
         {

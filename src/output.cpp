@@ -4,7 +4,7 @@
 #include <iomanip>
 
 
-void print_results(
+void print_simple_results(
     input& in,
     sim_prices& sp,
     cf_prices& cp)
