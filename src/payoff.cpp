@@ -3,8 +3,6 @@
 #include <algorithm>
 
 
-payoff::payoff() {}
-
 
 call_payoff::call_payoff(const double& K)
     : K_(K)

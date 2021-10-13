@@ -55,13 +55,13 @@ sim_prices asian_monte_carlo(asian_input& in)
 
     if (in.type == 'a')
     {
-        asian_call_ptr = new arithmetic_asian(&call_po);
-        asian_put_ptr = new arithmetic_asian(&put_po);
+        asian_call_ptr = new arithmetic_asian(call_po);
+        asian_put_ptr = new arithmetic_asian(put_po);
     }
     else
     {
-        asian_call_ptr = new geometric_asian(&call_po);
-        asian_put_ptr = new geometric_asian(&put_po);
+        asian_call_ptr = new geometric_asian(call_po);
+        asian_put_ptr = new geometric_asian(put_po);
     }
 
     std::random_device rd;
@@ -82,6 +82,8 @@ sim_prices asian_monte_carlo(asian_input& in)
         call_pot += (*asian_call_ptr).payoff_price(S_vec);
         put_pot += (*asian_put_ptr).payoff_price(S_vec);
     }
+    delete asian_call_ptr;
+    delete asian_put_ptr;
     sim_prices sp;
     sp.sim_call = exp(-in.r * in.T) * (call_pot / in.num_sims);
     sp.sim_put = exp(-in.r * in.T) * (put_pot / in.num_sims);

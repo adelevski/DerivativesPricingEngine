@@ -4,13 +4,9 @@
 #include <numeric>
 
 
-asian_option::asian_option(payoff* po)
-    :po_(po)
-{}
 
-
-arithmetic_asian::arithmetic_asian(payoff* po)
-    : asian_option(po)
+arithmetic_asian::arithmetic_asian(payoff& po)
+    : po_(po)
 {}
 
 double arithmetic_asian::payoff_price(const std::vector<double>& S_vec) const
@@ -18,12 +14,12 @@ double arithmetic_asian::payoff_price(const std::vector<double>& S_vec) const
     int period = S_vec.size();
     double sum = std::accumulate(S_vec.begin(), S_vec.end(), 0);
     double mean = sum / period;
-    return (*po_)(mean);
+    return po_(mean);
 }
 
 
-geometric_asian::geometric_asian(payoff* po)
-    : asian_option(po)
+geometric_asian::geometric_asian(payoff& po)
+    : po_(po)
 {}
 
 double geometric_asian::payoff_price(const std::vector<double>& S_vec) const
@@ -35,5 +31,5 @@ double geometric_asian::payoff_price(const std::vector<double>& S_vec) const
         sum += log(S_vec[i]);
     }
     double mean = exp(sum / period);
-    return (*po_)(mean);
+    return po_(mean);
 }

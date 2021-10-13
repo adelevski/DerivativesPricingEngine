@@ -4,7 +4,7 @@
 class payoff 
 {
 public:
-    payoff();
+    payoff() {};
     virtual ~payoff() {};
     virtual double operator()(const double& S) const = 0;
 };
