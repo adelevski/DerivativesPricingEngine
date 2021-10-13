@@ -9,7 +9,7 @@ Currently implemented:
 
 Standard error for European options is calculated using the closed-form Black-Sholes-Merton model for option pricing. 
 
-The very simplistic GUI asks the user if they want to price Asian or European, and then asks the user to provide the corresponding inputs before calculating and displaying the results. 
+The very simplistic CLI menu asks the user if they want to price Asian or European, and then asks the user to provide the corresponding inputs before calculating and displaying the results. 
 
 ### To Do
 
